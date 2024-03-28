@@ -4,7 +4,7 @@ import { SendEmailVerification } from "../emails/authEmailService.js";
 const register = async (req, res) => {
   //Validate the request body
   if (Object.values(req.body).includes("")) {
-    const error = new Error("Please fill all fields");
+    const error = new Error("Todos los campos son obligatorios");
     return res.status(400).json({
       msg: error.message,
     });
@@ -13,7 +13,7 @@ const register = async (req, res) => {
   //Avoid  duplicate users
   const userExist = await User.findOne({ email });
   if (userExist) {
-    const error = new Error("Email already exists!");
+    const error = new Error("Esta cuenta ya existe!");
     return res.status(400).json({
       msg: error.message,
     });
@@ -22,7 +22,7 @@ const register = async (req, res) => {
   const MIN_PASSWORD_LENGTH = 8;
   if (password.trim().length < MIN_PASSWORD_LENGTH) {
     const error = new Error(
-      `Password must be at least ${MIN_PASSWORD_LENGTH} characters long`
+      `La contraseña debe de contener al menors ${MIN_PASSWORD_LENGTH} caracteres.`
     );
     return res.status(400).json({
       msg: error.message,
@@ -34,7 +34,7 @@ const register = async (req, res) => {
     const { name, email, token } = result;
     SendEmailVerification({ name, email, token });
     res.json({
-      msg: "User created successfully check  your email for verification",
+      msg: "Usuario registrado correctamente, revisa tu email  para activar la cuenta",
     });
   } catch (error) {
     console.log(error);
@@ -45,7 +45,7 @@ const verifyAccount = async (req, res) => {
   const { token } = req.params;
   const user = await User.findOne({ token });
   if (!user) {
-    const error = new Error(`User not found!`);
+    const error = new Error(`Usuario no encontrado!`);
     return res.status(401).json({
       msg: error.message,
     });
@@ -55,7 +55,7 @@ const verifyAccount = async (req, res) => {
     user.token = "";
     await user.save();
     res.json({
-      msg: "User verified  successfully!",
+      msg: "Usuario verificado correctamente!",
     });
   } catch (error) {
     console.log(error);
@@ -63,7 +63,7 @@ const verifyAccount = async (req, res) => {
 };
 const login = async (req, res) => {
   if (Object.values(req.body).includes("")) {
-    const error = new Error("Please fill all fields");
+    const error = new Error("Todos los campos son obligatorios.");
     return res.status(400).json({
       msg: error.message,
     });
@@ -71,13 +71,13 @@ const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) {
-    const error = new Error(`User not exist!`);
+    const error = new Error(`El usuario no existe!`);
     return res.status(401).json({
       msg: error.message,
     });
   }
   if (!user.verified) {
-    const error = new Error(`User  is not verified! Please check your mail.`);
+    const error = new Error(`El usuario no esta verificado, revisa tu email.`);
     return res.status(401).json({
       msg: error.message,
     });
@@ -87,7 +87,7 @@ const login = async (req, res) => {
       msg: "Logged in Successfully",
     });
   } else {
-    const error = new Error(`Password  incorrect!`);
+    const error = new Error(`Contraseña incorrecta!`);
     return res.status(401).json({
       msg: error.message,
     });
