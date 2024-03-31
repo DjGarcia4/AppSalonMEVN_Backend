@@ -62,6 +62,7 @@ const verifyAccount = async (req, res) => {
     console.log(error);
   }
 };
+
 const login = async (req, res) => {
   if (Object.values(req.body).includes("")) {
     const error = new Error("Todos los campos son obligatorios.");
@@ -95,4 +96,9 @@ const login = async (req, res) => {
     });
   }
 };
-export { register, verifyAccount, login };
+
+const user = async (req, res) => {
+  const { user } = req;
+  res.json(user);
+};
+export { register, verifyAccount, login, user };
