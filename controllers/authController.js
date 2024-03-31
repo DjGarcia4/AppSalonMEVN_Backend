@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import { SendEmailVerification } from "../emails/authEmailService.js";
+import { generateJWT } from "../utils/index.js";
 
 const register = async (req, res) => {
   //Validate the request body
@@ -83,8 +84,9 @@ const login = async (req, res) => {
     });
   }
   if (await user.checkPassword(password)) {
+    const token = generateJWT(user._id);
     res.json({
-      msg: "Logged in Successfully",
+      token,
     });
   } else {
     const error = new Error(`Contraseña incorrecta!`);
