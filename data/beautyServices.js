@@ -1,82 +1,82 @@
 export const services = [
   {
-    name: "Men's Haircut",
+    name: "Corte de cabello para hombres",
     price: 100,
   },
   {
-    name: "Women's Haircut",
+    name: "Corte de cabello para mujeres",
     price: 120,
   },
   {
-    name: "Children's Haircut",
+    name: "Corte de cabello para niños",
     price: 90,
   },
   {
-    name: "Beard and Mustache Trim",
+    name: "Corte de barba y bigote",
     price: 100,
   },
   {
-    name: "Classic Razor Shave",
+    name: "Afeitado clásico con navaja",
     price: 100,
   },
   {
-    name: "Hair Coloring",
+    name: "Coloración de cabello",
     price: 200,
   },
   {
-    name: "Highlights and Lowlights",
+    name: "Reflejos y mechas",
     price: 300,
   },
   {
-    name: "Hairstyles for Weddings and Special Events",
+    name: "Peinados para bodas y eventos especiales",
     price: 400,
   },
   {
-    name: "Hair Treatments for Damaged or Brittle Hair",
+    name: "Tratamientos capilares para cabello dañado o quebradizo",
     price: 100,
   },
   {
-    name: "Scalp Massages to Stimulate Hair Growth",
+    name: "Masajes capilares para estimular el crecimiento del cabello",
     price: 140,
   },
   {
-    name: "Makeup for Weddings and Special Events",
+    name: "Maquillaje para bodas y eventos especiales",
     price: 300,
   },
   {
-    name: "Manicure and Pedicure",
+    name: "Manicura y pedicura",
     price: 120,
   },
   {
-    name: "Waxing",
+    name: "Depilación con cera",
     price: 120,
   },
   {
-    name: "Facial Treatments for Men and Women",
+    name: "Tratamientos faciales para hombres y mujeres",
     price: 130,
   },
   {
-    name: "Body Exfoliation Treatments",
+    name: "Tratamientos de exfoliación corporal",
     price: 200,
   },
   {
-    name: "Relaxing Massages to Relieve Stress and Muscle Tension",
+    name: "Masajes relajantes para aliviar el estrés y la tensión muscular",
     price: 250,
   },
   {
-    name: "Hair Extensions",
+    name: "Extensiones de cabello",
     price: 150,
   },
   {
-    name: "Eyebrow and Eyelash Makeup",
+    name: "Maquillaje de cejas y pestañas",
     price: 100,
   },
   {
-    name: "Eyebrow and Eyelash Tinting",
+    name: "Tintura de cejas y pestañas",
     price: 150,
   },
   {
-    name: "Sunless Tanning Treatments",
+    name: "Tratamientos de bronceado sin sol",
     price: 250,
   },
 ];
