@@ -13,7 +13,7 @@ const appointmentSchema = mongoose.Schema({
   time: {
     type: String,
   },
-  totalAmount: {
+  totalToPay: {
     type: Number,
   },
   user: {
