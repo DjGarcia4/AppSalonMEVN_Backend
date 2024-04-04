@@ -10,14 +10,14 @@ export async function SendEmailVerification({ email, name, token }) {
   // send mail with defined transport object
   const info = await transporter.sendMail({
     from: "AppSalon <cuentas@appsalon.com>",
-    to: email,
-    subject: "Confirm  your email address on AppSalon!",
-    text: "Please click the following link to verify your account",
-    html: `<p>Hi! ${name}, verify your account in AppSalon</p> 
-      <p>Your account is almost ready, you just must  confirm it by clicking this button below.</p>
-      <a href="${process.env.FRONTEND_URL}/auth/confirm-account/${token}">Verify your Account</a>
-      <p>If you did not create this account, ignore this message.</p>
+    to: "correo@correo.com",
+    subject: "Confirma tu cuenta",
+    text: "Por favor click en el link de bajo para verificar tu cuenta",
+    html: `<p>Hola! ${name}, verifica tu cuenta en AppSalon</p> 
+      <p>Tu cuenta esta casi lista, solo debes dar click en el link de abajo.</p>
+      <a href="${process.env.FRONTEND_URL}/auth/confirm-account/${token}">Verifica tu cuenta</a>
+      <p>Si tu no has creado esta cuenta, ignora este mensaje.</p>
     `,
   });
-  console.log("Email  sent: ", info.messageId);
+  console.log("Email enviado: ", info.messageId);
 }
