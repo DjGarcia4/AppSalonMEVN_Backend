@@ -128,4 +128,42 @@ const forgotPassword = async (req, res) => {
     console.log(error);
   }
 };
-export { register, verifyAccount, login, user, forgotPassword };
+const verifyPasswordResetToken = async (req, res) => {
+  const { token } = req.params;
+  const isValidToken = await User.findOne({ token });
+  if (!isValidToken) {
+    const error = new Error(`El token no es valido!`);
+    return res.status(404).json({
+      msg: error.message,
+    });
+  }
+  res.json({ msg: "Token Valido" });
+};
+const updatePassword = async (req, res) => {
+  const { token } = req.params;
+  const user = await User.findOne({ token });
+  if (!user) {
+    const error = new Error(`El token no es valido!`);
+    return res.status(404).json({
+      msg: error.message,
+    });
+  }
+  const { password } = req.body;
+  try {
+    user.token = "";
+    user.password = password;
+    await user.save();
+    res.json({ msg: `Contraseña actualizada correctamente.` });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export {
+  register,
+  verifyAccount,
+  login,
+  user,
+  forgotPassword,
+  verifyPasswordResetToken,
+  updatePassword,
+};

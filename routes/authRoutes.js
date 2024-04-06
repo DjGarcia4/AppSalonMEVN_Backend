@@ -6,6 +6,8 @@ import {
   login,
   user,
   forgotPassword,
+  verifyPasswordResetToken,
+  updatePassword,
 } from "../controllers/authController.js";
 
 const router = express.Router();
@@ -14,7 +16,10 @@ router.post("/register", register);
 router.get("/verify/:token", verifyAccount);
 router.post("/login", login);
 router.post("/forgot-password", forgotPassword);
-
+router
+  .route("/forgot-password/:token")
+  .get(verifyPasswordResetToken)
+  .post(updatePassword);
 //Vip Area - JWT required
 router.get("/user", authMiddleware, user);
 
