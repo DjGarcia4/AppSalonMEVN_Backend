@@ -5,6 +5,7 @@ import {
   verifyAccount,
   login,
   user,
+  forgotPassword,
 } from "../controllers/authController.js";
 
 const router = express.Router();
@@ -12,6 +13,7 @@ const router = express.Router();
 router.post("/register", register);
 router.get("/verify/:token", verifyAccount);
 router.post("/login", login);
+router.post("/forgot-password", forgotPassword);
 
 //Vip Area - JWT required
 router.get("/user", authMiddleware, user);

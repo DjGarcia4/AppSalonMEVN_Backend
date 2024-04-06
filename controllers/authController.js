@@ -1,6 +1,9 @@
 import User from "../models/User.js";
-import { SendEmailVerification } from "../emails/authEmailService.js";
-import { generateJWT } from "../utils/index.js";
+import {
+  SendEmailVerification,
+  sendEmailPasswordRest,
+} from "../emails/authEmailService.js";
+import { generateJWT, uniqueId } from "../utils/index.js";
 
 const register = async (req, res) => {
   //Validate the request body
@@ -101,4 +104,28 @@ const user = async (req, res) => {
   const { user } = req;
   res.json(user);
 };
-export { register, verifyAccount, login, user };
+const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  const user = await User.findOne({ email });
+  if (!user) {
+    const error = new Error(`El usuario no existe!`);
+    return res.status(404).json({
+      msg: error.message,
+    });
+  }
+  try {
+    user.token = uniqueId();
+    const result = await user.save();
+    await sendEmailPasswordRest({
+      name: result.name,
+      email: result.email,
+      token: result.token,
+    });
+    res.json({
+      msg: "Hemos enviado un email con las instrucciones!",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+export { register, verifyAccount, login, user, forgotPassword };
