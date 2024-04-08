@@ -8,6 +8,7 @@ import {
   forgotPassword,
   verifyPasswordResetToken,
   updatePassword,
+  admin,
 } from "../controllers/authController.js";
 
 const router = express.Router();
@@ -22,5 +23,6 @@ router
   .post(updatePassword);
 //Vip Area - JWT required
 router.get("/user", authMiddleware, user);
+router.get("/admin", authMiddleware, admin);
 
 export default router;

@@ -158,6 +158,17 @@ const updatePassword = async (req, res) => {
     console.log(error);
   }
 };
+
+const admin = async (req, res) => {
+  const { user } = req;
+  if (!user.admin) {
+    const error = new Error(`Acción no valida!`);
+    return res.status(403).json({
+      msg: error.message,
+    });
+  }
+  res.json(user);
+};
 export {
   register,
   verifyAccount,
@@ -166,4 +177,5 @@ export {
   forgotPassword,
   verifyPasswordResetToken,
   updatePassword,
+  admin,
 };
